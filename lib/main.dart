@@ -43,7 +43,10 @@ class _HelloRectangleState extends State<HelloRectangle> {
   Widget build(BuildContext context) {
     return Center(
       child: FlatButton(
-        onPressed: _generateRandomColor,
+        onPressed: () {
+          print('It was pressed');
+          _generateRandomColor();
+        },
         color: _color,
         child: Center(
           child: Text(
