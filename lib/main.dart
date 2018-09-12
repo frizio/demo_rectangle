@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-Widget helloRectangle() {
-  return Container(
-    color: Colors.greenAccent
-    ,
-  );
-}
-
 void main() {
   runApp(
     MaterialApp(
@@ -16,8 +9,24 @@ void main() {
           elevation: 0.5,
           title: Text('Demo Staless Widget'),
         ),
-        body: helloRectangle(),
+        body: HelloRectangle(),
       ),
     ),
   );
+}
+
+class HelloRectangle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.greenAccent,
+        height: 400.0,
+        width: 300.0,
+        child: Center(
+          child: Text('Hello!', style: TextStyle(fontSize: 30.0)),
+        ),
+      ),
+    );
+  }
 }
