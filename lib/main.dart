@@ -1,30 +1,56 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: true,
       home: Scaffold(
         appBar: AppBar(
-          elevation: 0.5,
-          title: Text('Demo Staless Widget'),
+          title: Text('Hello Stateful Rectangle'),
         ),
-        body: HelloRectangle(),
+        body: HelloRectangle(text: 'Hello from instantiation!'),
       ),
     ),
   );
 }
 
-class HelloRectangle extends StatelessWidget {
+class HelloRectangle extends StatefulWidget {
+  final String text;
+
+  HelloRectangle({
+    this.text,
+  });
+
   @override
+  createState() => _HelloRectangleState();
+}
+
+class _HelloRectangleState extends State<HelloRectangle> {
+  Color _color = Colors.greenAccent;
+  void _generateRandomColor() {
+    var random = Random();
+    setState(() {
+      _color = Color.fromARGB(
+        255,
+        random.nextInt(255),
+        random.nextInt(255),
+        random.nextInt(255),
+      );
+    });
+  }
+
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        color: Colors.greenAccent,
-        height: 400.0,
-        width: 300.0,
+      child: FlatButton(
+        onPressed: _generateRandomColor,
+        color: _color,
         child: Center(
-          child: Text('Hello!', style: TextStyle(fontSize: 30.0)),
+          child: Text(
+            widget.text,
+            style: TextStyle(fontSize: 40.0),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
